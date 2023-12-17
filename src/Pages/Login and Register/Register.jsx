@@ -1,18 +1,16 @@
 // import Lottie from "lottie-react";
-// import registerLoti from '../../../public/Registation.json'
 import { useForm } from "react-hook-form"
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 import axios from "axios";
 
 
 const Register = () => {
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
     const IMG_IMG_HOSTING = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_API_KEY_IMGBB}`
     const {
         register,
-        reset,
         handleSubmit,
         formState: { errors },
     } = useForm()
@@ -74,61 +72,88 @@ const Register = () => {
     return (
         <>
             <Helmet>
-                <title>IMS || REGISTER</title>
+                <title>CMT || REGISTER</title>
                 <link rel="canonical" />
             </Helmet>
-            <div className="hero min-h-screen w-11/12 mx-auto bg-base-200">
+            <div className="hero min-h-screen w-full mx-auto bg-base-200">
                 <div className="hero-content flex-col lg:flex-row-reverse">
-                    <div className="text-center lg:w-1/2 lg:text-left">
-                        {/* <Lottie className=" lg:ml-36 h-36 lg:h-2/6 w-10/12" animationData={registerLoti} loop={true} /> */}
-                    </div>
-                    <div className="card md:w-1/2   max-w-sm shadow-2xl bg-base-100">
+                    <div className="card shadow-2xl bg-base-100">
                         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Name</span>
-                                </label>
-                                <input type="text" {...register("firstName", { required: true })} placeholder="name" className="input input-bordered" />
-                                {errors.firstName?.type === "required" && (
-                                    <p className=" text-red-400">First name is required</p>
-                                )}
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Profile Photo</span>
-                                </label>
-                                <input type="file" {...register("image", { required: true })} className="input-bordered" />
-                                {errors.firstName?.type === "image" && (
-                                    <p className=" text-red-400">photo is required</p>
-                                )}
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Email</span>
-                                </label>
-                                <input type="email" name="email" {...register("email")} placeholder="email" className="input input-bordered" required />
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Password</span>
-                                </label>
-                                <input type="password" name="password" {...register("password", {
-                                    required: true, minLength: 6, maxLength: 20,
-                                    pattern: /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{6}$/
-                                })} placeholder="password" className="input input-bordered" />
-                                {errors.password?.type === "minLength" && (
-                                    <p className=" text-red-400">password must be 6 character</p>
-                                )}
-                                {errors.password?.type === "pattern" && (
-                                    <p className=" text-red-400">password must 1 uppercase 1 lowercase or special character and number </p>
-                                )}
+                            <div className=" grid grid-cols-2 gap-5">
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Name</span>
+                                    </label>
+                                    <input type="text" {...register("firstName", { required: true })} placeholder="name" className="input input-bordered" />
+                                    {errors.firstName?.type === "required" && (
+                                        <p className=" text-red-400">First name is required</p>
+                                    )}
+                                </div>
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Roll</span>
+                                    </label>
+                                    <input type="number" {...register("roll", { required: true })} placeholder="Roll" className="input input-bordered" />
+                                    {errors.roll?.type === "required" && (
+                                        <p className=" text-red-400">roll is required</p>
+                                    )}
+                                </div>
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Group</span>
+                                    </label>
+                                    <select {...register("Title", { required: true })}>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                    </select>
 
+                                </div>
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Shift</span>
+                                    </label>
+                                    <select {...register("Title", { required: true })}>
+                                        <option value="Morning">Morning</option>
+                                        <option value="Afternoon">Afternoon</option>
+                                    </select>
+
+                                </div>
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Profile Photo</span>
+                                    </label>
+                                    <input type="file" {...register("image", { required: true })} className="input-bordered" />
+                                    {errors.firstName?.type === "image" && (
+                                        <p className=" text-red-400">photo is required</p>
+                                    )}
+                                </div>
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Email</span>
+                                    </label>
+                                    <input type="email" name="email" {...register("email")} placeholder="email" className="input input-bordered" required />
+                                </div>
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Password</span>
+                                    </label>
+                                    <input type="password" name="password" {...register("password", {
+                                        required: true, minLength: 6, maxLength: 20,
+                                        pattern: /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{6}$/
+                                    })} placeholder="password" className="input input-bordered" />
+                                    {errors.password?.type === "minLength" && (
+                                        <p className=" text-red-400">password must be 6 character</p>
+                                    )}
+                                    {errors.password?.type === "pattern" && (
+                                        <p className=" text-red-400">password must 1 uppercase 1 lowercase or special character and number </p>
+                                    )}
+
+                                </div>
                             </div>
                             <div className="form-control mt-6">
                                 <input type="submit" className="btn btn-primary bg-blue-800 " value="Register" />
                             </div>
                             <p>Already have a account. Please <Link to={"/login"}><span className=" text-blue-500">Login</span></Link></p>
-                            <GoogleLogin></GoogleLogin>
                         </form>
                     </div>
                 </div>
