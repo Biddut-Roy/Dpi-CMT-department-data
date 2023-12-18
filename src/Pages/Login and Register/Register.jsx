@@ -17,11 +17,11 @@ const Register = () => {
 
     const onSubmit = async (data) => {
         const imgFile = { image: data.image[0] }
-
-        const res = await axios.post(IMG_IMG_HOSTING, imgFile, {
-            headers: { "content-type": "multipart/form-data" }
-        })
-        console.log(res.data);
+console.log(data)
+        // const res = await axios.post(IMG_IMG_HOSTING, imgFile, {
+        //     headers: { "content-type": "multipart/form-data" }
+        // })
+        
         // if (res.data.success) {
         //     createUser(data?.email, data?.password)
         //         .then(() => {
@@ -102,7 +102,7 @@ const Register = () => {
                                     <label className="label">
                                         <span className="label-text">Group</span>
                                     </label>
-                                    <select {...register("Title", { required: true })}>
+                                    <select {...register("group", { required: true })}>
                                         <option value="A">A</option>
                                         <option value="B">B</option>
                                     </select>
@@ -112,7 +112,7 @@ const Register = () => {
                                     <label className="label">
                                         <span className="label-text">Shift</span>
                                     </label>
-                                    <select {...register("Title", { required: true })}>
+                                    <select {...register("shift", { required: true })}>
                                         <option value="Morning">Morning</option>
                                         <option value="Afternoon">Afternoon</option>
                                     </select>
@@ -132,6 +132,12 @@ const Register = () => {
                                         <span className="label-text">Email</span>
                                     </label>
                                     <input type="email" name="email" {...register("email")} placeholder="email" className="input input-bordered" required />
+                                </div>
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Passing Year</span>
+                                    </label>
+                                    <input type="number" name="year" {...register("year")} placeholder="2021" className="input input-bordered" required />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
